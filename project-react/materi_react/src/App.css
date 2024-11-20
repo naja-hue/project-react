@@ -1,0 +1,184 @@
+/* Styling untuk card */
+.card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid #f8bbd0; /* Border pink pastel */
+  margin-bottom: 20px; /* Menambahkan margin bawah antar card */
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Menambahkan spasi antar elemen di dalam card */
+.card h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #ec407a;
+  margin-bottom: 15px;
+}
+
+.card p {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* Tombol di dalam card */
+.card button {
+  padding: 12px 20px;
+  font-size: 16px;
+  background-color: #f06292; /* Warna tombol pink pastel */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 8px 0; /* Memberikan margin vertikal antar tombol */
+  display: inline-block; /* Membuat tombol dalam baris yang sama */
+}
+
+.card button:hover {
+  background-color: #ec407a; /* Tombol lebih gelap saat hover */
+}
+
+/* Tombol Tambah di bawah Tabel */
+button.tambah {
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #f06292; /* Tombol tambah warna pink pastel */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+button.tambah:hover {
+  background-color: #ec407a; /* Tombol tambah lebih gelap saat hover */
+}
+
+/* Tombol Aksi dalam Tabel */
+button.aksi {
+  padding: 8px 15px;
+  background-color: #f06292; /* Warna tombol pink pastel */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 8px;
+  margin-top: 5px;
+}
+
+button.aksi:hover {
+  background-color: #ec407a; /* Tombol lebih gelap saat hover */
+}
+
+button.aksi-edit {
+  background-color: #ec407a;
+}
+
+button.aksi-delete {
+  background-color: #d32f2f; /* Merah sedikit gelap untuk tombol hapus */
+}
+
+button.aksi-edit:hover {
+  background-color: #c2185b; /* Merah gelap saat hover */
+}
+
+button.aksi-delete:hover {
+  background-color: #9a0007; /* Merah lebih gelap saat hover */
+}
+
+/* Tabel Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Header tabel */
+th {
+  background-color: #f8bbd0; /* Pink pastel */
+  color: #ec407a; /* Pink gelap */
+  font-size: 18px;
+  font-weight: 600;
+  padding: 12px;
+  text-align: left;
+  border-bottom: 2px solid #f06292; /* Garis bawah pink pastel */
+}
+
+/* Sel data */
+td {
+  background-color: #ffffff; /* Putih untuk sel data */
+  color: #555;
+  padding: 12px;
+  text-align: left;
+  border-bottom: 2px solid #f8bbd0; /* Garis bawah pink pastel */
+  transition: background-color 0.3s ease;
+}
+
+/* Hover efek untuk baris */
+tr:hover {
+  background-color: #fce4ec; /* Pink sangat lembut untuk hover */
+}
+
+/* Styling untuk tombol aksi dalam tabel */
+button.aksi {
+  padding: 8px 15px;
+  background-color: #f06292; /* Tombol dengan pink pastel */
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 8px;
+  margin-top: 5px;
+}
+
+button.aksi:hover {
+  background-color: #ec407a; /* Tombol lebih gelap saat hover */
+}
+
+/* Tombol Edit dan Delete dengan variasi warna */
+button.aksi-edit {
+  background-color: #ec407a; /* Pink pastel gelap untuk tombol Edit */
+}
+
+button.aksi-delete {
+  background-color: #d32f2f; /* Merah lebih gelap untuk tombol Hapus */
+}
+
+button.aksi-edit:hover {
+  background-color: #c2185b; /* Merah gelap saat hover untuk tombol Edit */
+}
+
+button.aksi-delete:hover {
+  background-color: #9a0007; /* Merah lebih gelap saat hover untuk tombol Hapus */
+}
+
+/* Styling untuk tabel container */
+.table-container {
+  margin-top: 30px;
+  overflow-x: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: #f8bbd0; /* Pink pastel sebagai latar belakang tabel */
+  padding: 20px;
+}
