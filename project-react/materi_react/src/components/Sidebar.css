@@ -1,74 +1,65 @@
-/* Sidebar Styling */
+/* Sidebar.css */
 .sidebar {
-    background-color: #f8bbd0; /* Pink pastel */
-    height: 100%;
-    width: 250px;
-    position: fixed;
-    top: 0;
-    left: -250px; /* Awalnya tersembunyi */
-    transition: left 0.3s ease;
-    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
-    z-index: 999;
-    padding-top: 20px;
-    border-radius: 0 10px 10px 0;
+  width: 260px; /* Lebar sidebar yang lebih kecil */
+  height: 100vh; /* Full height */
+  background: linear-gradient(135deg, #f7c6d7, #f9e1e7); /* Pink pastel lembut */
+  color: #6e4b8e; /* Warna teks pink gelap */
+  padding-top: 40px; /* Ruang untuk header */
+  position: fixed; /* Posisi tetap di kiri */
+  top: 0;
+  left: 0;
+  box-shadow: 4px 0 25px rgba(0, 0, 0, 0.1); /* Bayangan halus */
+  transition: 0.3s ease-in-out; /* Transisi yang halus */
+  font-family: 'Poppins', sans-serif; /* Gaya font */
+  z-index: 1000; /* Di atas konten lainnya */
+}
+
+.sidebar-header {
+  text-align: center; /* Teks terpusat */
+  margin-bottom: 30px; /* Ruang di bawah header */
+}
+
+.sidebar-title {
+  font-size: 30px; /* Ukuran judul lebih kecil */
+  font-weight: 700; /* Teks lebih tebal */
+  margin: 10px 0; /* Margin di sekitar judul */
+  color: #b84f71; /* Warna judul pink gelap (lebih pekat) */
+}
+
+.sidebar-menu {
+  list-style: none; /* Menghilangkan style list */
+  padding: 0; /* Menghilangkan padding */
+}
+
+.sidebar-menu li {
+  padding: 15px 20px; /* Padding lebih kecil untuk tiap item */
+  cursor: pointer; /* Kursor pointer */
+  display: flex; /* Menggunakan flexbox */
+  justify-content: center; /* Mengatur item ke tengah */
+  align-items: center; /* Meratakan ikon dan teks di tengah */
+  transition: background 0.3s; /* Efek transisi latar belakang */
+  border-radius: 12px; /* Sudut lebih melengkung */
+  margin: 8px 0; /* Ruang antara item lebih kecil */
+  text-align: center; /* Rata tengah */
+  color: #b84f71; /* Warna teks pink gelap untuk item menu */
+  font-size: 18px; /* Ukuran font sedikit lebih kecil */
+}
+
+.sidebar-menu li:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* Efek hover yang lembut */
+  color: #ffffff; /* Warna teks putih saat hover */
+}
+
+.sidebar-menu li svg {
+  margin-right: 10px; /* Ruang antara ikon dan teks lebih kecil */
+  color: #b84f71; /* Warna ikon juga pink gelap */
+  width: 22px; /* Ukuran ikon lebih kecil */
+  height: 22px; /* Tinggi ikon lebih kecil */
+}
+
+/* Penyesuaian responsif untuk tampilan lebih kecil */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 220px; /* Lebih sempit di perangkat kecil */
   }
-  
-  .sidebar.open {
-    left: 0; /* Sidebar muncul */
-  }
-  
-  .sidebar .menu {
-    display: flex;
-    flex-direction: column;
-    padding: 0 20px;
-  }
-  
-  .sidebar .menu a {
-    color: #555;
-    padding: 12px;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: 500;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-  
-  .sidebar .menu a:hover {
-    background-color: #ec407a; /* Hover effect pink pastel gelap */
-    color: white;
-  }
-  
-  .sidebar .menu a.active {
-    background-color: #ec407a; /* Pink pastel aktif */
-    color: white;
-  }
-  
-  /* Sidebar Toggle Button */
-  .sidebar-toggle {
-    display: none;
-  }
-  
-  @media (max-width: 768px) {
-    .sidebar {
-      width: 200px;
-    }
-  
-    .sidebar .menu a {
-      padding: 10px;
-    }
-  
-    .sidebar-toggle {
-      display: block;
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      background-color: #ec407a;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-  }
-  
+}

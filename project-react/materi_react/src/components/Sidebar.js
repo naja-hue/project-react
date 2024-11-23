@@ -1,18 +1,21 @@
 import React from 'react';
-import './Sidebar.css';
+import { FaChalkboardTeacher, FaUserGraduate } from 'react-icons/fa'; // Importing icons from react-icons
+import './Sidebar.css'; // Ensure you have your CSS for the sidebar
 
-const Sidebar = ({ isOpen, toggleSidebar, handleMenuClick }) => {
+const Sidebar = ({ handleMenuClick }) => {
   return (
-    <div className={`sidebar ${isOpen ? 'open' : ''}`}>
-      <div className="menu">
-        <a href="#dashboard" onClick={() => {handleMenuClick("dashboard"); toggleSidebar();}}>Dashboard</a>
-        <a href="#data-guru" onClick={() => {handleMenuClick("guru"); toggleSidebar();}}>Data Guru</a>
-        <a href="#data-siswa" onClick={() => {handleMenuClick("siswa"); toggleSidebar();}}>Data Siswa</a>
+    <div className="sidebar">
+      <div className="sidebar-header">
+        <h2 className="sidebar-title">Peri Imut</h2>
       </div>
-      {/* Sidebar Toggle Button for mobile */}
-      <button className="sidebar-toggle" onClick={toggleSidebar}>
-        {isOpen ? "Close Menu" : "Open Menu"}
-      </button>
+      <ul className="sidebar-menu">
+        <li className="sidebar-item" onClick={() => handleMenuClick('guru')}>
+          <FaChalkboardTeacher /> Data Guru
+        </li>
+        <li className="sidebar-item" onClick={() => handleMenuClick('siswa')}>
+          <FaUserGraduate /> Data Siswa
+        </li>
+      </ul>
     </div>
   );
 };

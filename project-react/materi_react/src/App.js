@@ -1,60 +1,154 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import GuruForm from './components/GuruForm';
 import SiswaForm from './components/SiswaForm';
-import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 
 function App() {
-  const [guruData, setGuruData] = useState([
-    { id: 1, nama: "John Doe", mapel: "Matematika", nik: "12345", jk: "L", jabatan: "Guru" },
-    { id: 2, nama: "Jane Smith", mapel: "Biologi", nik: "67890", jk: "P", jabatan: "Guru" }
-  ]);
-  const [siswaData, setSiswaData] = useState([
-    { id: 1, nama: "Ahmad", kelas: "10", jurusan: "IPA", nisn: "001", asalSekolah: "SMA 1" },
-    { id: 2, nama: "Siti", kelas: "12", jurusan: "IPS", nisn: "002", asalSekolah: "SMA 2" }
-  ]);
+  const [guruData, setGuruData] = useState([]);
+  const [siswaData, setSiswaData] = useState([]);
   const [showGuruForm, setShowGuruForm] = useState(false);
   const [showSiswaForm, setShowSiswaForm] = useState(false);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState("dashboard");
+  const [editingGuru, setEditingGuru] = useState(null);
+  const [editingSiswa, setEditingSiswa] = useState(null);
 
-  const addGuru = (guru) => {
-    setGuruData([...guruData, guru]);
+  useEffect(() => {
+    fetchGuruData();
+    fetchSiswaData();
+  }, []);
+
+  // Fetch data functions
+  const fetchGuruData = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/guru');
+      const data = await response.json();
+      setGuruData(data);
+    } catch (error) {
+      console.error("Error fetching guru data:", error);
+    }
   };
 
-  const addSiswa = (siswa) => {
-    setSiswaData([...siswaData, siswa]);
+  const fetchSiswaData = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/siswa');
+      const data = await response.json();
+      setSiswaData(data);
+    } catch (error) {
+      console.error("Error fetching siswa data:", error);
+    }
   };
 
-  const deleteGuru = (id) => {
-    setGuruData(guruData.filter(guru => guru.id !== id));
+  // Add functions
+  const addGuru = async (guru) => {
+    try {
+      const response = await fetch('http://localhost:5000/guru', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(guru),
+      });
+      const newGuru = await response.json();
+      setGuruData((prevData) => [...prevData, newGuru]);
+      setShowGuruForm(false);
+    } catch (error) {
+      console.error("Error adding guru:", error);
+    }
   };
 
-  const deleteSiswa = (id) => {
-    setSiswaData(siswaData.filter(siswa => siswa.id !== id));
+  const addSiswa = async (siswa) => {
+    try {
+      const response = await fetch('http://localhost:5000/siswa', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(siswa),
+      });
+      const newSiswa = await response.json();
+      setSiswaData((prevData) => [...prevData, newSiswa]);
+      setShowSiswaForm(false);
+    } catch (error) {
+      console.error("Error adding siswa:", error);
+    }
   };
 
+  // Update functions
+  const updateGuru = async (updatedGuru) => {
+    try {
+      const response = await fetch(`http://localhost:5000/guru/${updatedGuru.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedGuru),
+      });
+      const result = await response.json();
+      setGuruData((prevData) => 
+        prevData.map(guru => (guru.id === result.id ? result : guru))
+      );
+      setEditingGuru(null);
+      setShowGuruForm(false);
+    } catch (error) {
+      console.error("Error updating guru:", error);
+    }
+  };
+
+  const updateSiswa = async (updatedSiswa) => {
+    try {
+      const response = await fetch(`http://localhost:5000/siswa/${updatedSiswa.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedSiswa),
+      });
+      const result = await response.json();
+      setSiswaData((prevData) => 
+        prevData.map(siswa => (siswa.id === result.id ? result : siswa))
+      );
+      setEditingSiswa(null);
+      setShowSiswaForm(false);
+    } catch (error) {
+      console.error("Error updating siswa:", error);
+    }
+  };
+
+  // Delete functions
+  const deleteGuru = async (id) => {
+    try {
+      await fetch(`http://localhost:5000/guru/${id}`, { method: 'DELETE' });
+      setGuruData((prevData) => prevData.filter(guru => guru.id !== id));
+    } catch (error) {
+      console.error("Error deleting guru:", error);
+    }
+  };
+
+  const deleteSiswa = async (id) => {
+    try {
+      await fetch(`http://localhost:5000/siswa/${id}`, { method: 'DELETE' });
+      setSiswaData((prevData) => prevData.filter(siswa => siswa.id !== id));
+    } catch (error) {
+      console.error("Error deleting siswa:", error);
+    }
+  };
+
+  // Menu handling
   const handleMenuClick = (menu) => {
     setActiveMenu(menu);
   };
 
+  const goToDashboard = () => {
+    setActiveMenu("dashboard");
+  };
+
   return (
     <div className="App">
-      <Navbar toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
-      <Sidebar isOpen={isSidebarOpen} toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} handleMenuClick={handleMenuClick} />
+      <Sidebar handleMenuClick={handleMenuClick} />
 
-      <div className={`content-container ${isSidebarOpen ? 'sidebar-open' : ''}`}>
+      <div className="content-container">
         {activeMenu === "dashboard" && (
           <>
-            <h1>Dashboard</h1>
+            <h1 className="dashboard-title">Dashboard</h1>
             <div className="cards-container">
               <div className="card">
                 <h2>Data Guru</h2>
                 <p>{guruData.length} Guru Terdaftar</p>
                 <button onClick={() => setActiveMenu("guru")}>Lihat Data Guru</button>
               </div>
-
               <div className="card">
                 <h2>Data Siswa</h2>
                 <p>{siswaData.length} Siswa Terdaftar</p>
@@ -63,10 +157,10 @@ function App() {
             </div>
           </>
         )}
-
         {activeMenu === "guru" && (
           <>
             <h1>Data Guru</h1>
+            <button className="back-to-dashboard" onClick={goToDashboard}>Kembali ke Dashboard</button>
             <button className="tambah" onClick={() => setShowGuruForm(true)}>Tambah Guru</button>
             <div className="table-container">
               <table>
@@ -89,7 +183,15 @@ function App() {
                       <td>{guru.jk}</td>
                       <td>{guru.jabatan}</td>
                       <td>
-                        <button className="aksi aksi-edit">Edit</button>
+                        <button 
+                          className="aksi aksi-edit"
+                          onClick={() => {
+                            setEditingGuru(guru);
+                            setShowGuruForm(true);
+                          }}
+                        >
+                          Edit
+                        </button>
                         <button className="aksi aksi-delete" onClick={() => deleteGuru(guru.id)}>Hapus</button>
                       </td>
                     </tr>
@@ -99,10 +201,10 @@ function App() {
             </div>
           </>
         )}
-
         {activeMenu === "siswa" && (
           <>
             <h1>Data Siswa</h1>
+            <button className="back-to-dashboard" onClick={goToDashboard}>Kembali ke Dashboard</button>
             <button className="tambah" onClick={() => setShowSiswaForm(true)}>Tambah Siswa</button>
             <div className="table-container">
               <table>
@@ -125,7 +227,15 @@ function App() {
                       <td>{siswa.nisn}</td>
                       <td>{siswa.asalSekolah}</td>
                       <td>
-                        <button className="aksi aksi-edit">Edit</button>
+                        <button 
+                          className="aksi aksi-edit"
+                          onClick={() => {
+                            setEditingSiswa(siswa);
+                            setShowSiswaForm(true);
+                          }}
+                        >
+                          Edit
+                        </button>
                         <button className="aksi aksi-delete" onClick={() => deleteSiswa(siswa.id)}>Hapus</button>
                       </td>
                     </tr>
@@ -135,9 +245,20 @@ function App() {
             </div>
           </>
         )}
-
-        {showGuruForm && <GuruForm onSubmit={addGuru} onClose={() => setShowGuruForm(false)} />}
-        {showSiswaForm && <SiswaForm onSubmit={addSiswa} onClose={() => setShowSiswaForm(false)} />}
+        {showGuruForm && (
+          <GuruForm 
+            onSubmit={editingGuru ? updateGuru : addGuru} 
+            onClose={() => setShowGuruForm(false)} 
+            initialData={editingGuru} 
+          />
+        )}
+        {showSiswaForm && (
+          <SiswaForm 
+            onSubmit={editingSiswa ? updateSiswa : addSiswa} 
+            onClose={() => setShowSiswaForm(false)} 
+            initialData={editingSiswa} 
+          />
+        )}
       </div>
     </div>
   );

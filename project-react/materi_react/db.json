@@ -1,0 +1,38 @@
+{
+  "guru": [
+    {
+      "id": "3",
+      "nama": "Jokko",
+      "mapel": "Matematika",
+      "nik": "12345",
+      "jk": "L",
+      "jabatan": "Guru Senior"
+    },
+    {
+      "id": 1,
+      "nama": "Abi",
+      "mapel": "Kimia",
+      "nik": "12345",
+      "jk": "L",
+      "jabatan": "Guru Junior"
+    }
+  ],
+  "siswa": [
+    {
+      "id": "1",
+      "nama": "Mamat",
+      "kelas": "12",
+      "jurusan": "IPA",
+      "nisn": "001",
+      "asalSekolah": "SMA 1"
+    },
+    {
+      "id": "2",
+      "nama": "Siti",
+      "kelas": "12",
+      "jurusan": "IPS",
+      "nisn": "002",
+      "asalSekolah": "SMA 2"
+    }
+  ]
+}

@@ -1,61 +1,89 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import './Form.css'; // Pastikan untuk mengimpor CSS
 
-function SiswaForm({ onSubmit, onClose }) {
+const SiswaForm = ({ onSubmit, onClose, initialData }) => {
   const [nama, setNama] = useState('');
   const [kelas, setKelas] = useState('');
   const [jurusan, setJurusan] = useState('');
   const [nisn, setNisn] = useState('');
   const [asalSekolah, setAsalSekolah] = useState('');
 
+  useEffect(() => {
+    if (initialData) {
+      setNama(initialData.nama);
+      setKelas(initialData.kelas);
+      setJurusan(initialData.jurusan);
+      setNisn(initialData.nisn);
+      setAsalSekolah(initialData.asalSekolah);
+    }
+  }, [initialData]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ nama, kelas, jurusan, nisn, asalSekolah });
-    onClose();
+    const updatedSiswa = {
+      id: initialData ? initialData.id : Date.now(),
+      nama,
+      kelas,
+      jurusan,
+      nisn,
+      asalSekolah,
+    };
+    onSubmit(updatedSiswa);
   };
 
   return (
-    <div className="form-modal">
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Nama"
-          value={nama}
-          onChange={(e) => setNama(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Kelas"
-          value={kelas}
-          onChange={(e) => setKelas(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Jurusan"
-          value={jurusan}
-          onChange={(e) => setJurusan(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="NISN"
-          value={nisn}
-          onChange={(e) => setNisn(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Asal Sekolah"
-          value={asalSekolah}
-          onChange={(e) => setAsalSekolah(e.target.value)}
-          required
-        />
-        <button type="submit">Simpan</button>
-        <button type="button" onClick={onClose}>Tutup</button>
-      </form>
+    <div className="overlay">
+      <div className="form-container">
+        <h2>{initialData ? 'Edit Siswa' : 'Tambah Siswa'}</h2>
+        <form onSubmit={handleSubmit}>
+          <label>Nama</label>
+          <input
+            type="text"
+            placeholder="Nama"
+            value={nama}
+            onChange={(e) => setNama(e.target.value)}
+            required
+          />
+          <label>Kelas</label>
+          <input
+            type="text"
+            placeholder="Kelas"
+            value={kelas}
+            onChange={(e) => setKelas(e.target.value)}
+            required
+          />
+          <label>Jurusan</label>
+          <input
+            type="text"
+            placeholder="Jurusan"
+            value={jurusan}
+            onChange={(e) => setJurusan(e.target.value)}
+            required
+          />
+          <label>NISN</label>
+          <input
+            type="text"
+            placeholder="NISN"
+            value={nisn}
+            onChange={(e) => setNisn(e.target.value)}
+            required
+          />
+          <label>Asal Sekolah</label>
+          <input
+            type="text"
+            placeholder="Asal Sekolah"
+            value={asalSekolah}
+            onChange={(e) => setAsalSekolah(e.target.value)}
+            required
+          />
+          <div>
+            <button type="submit" className="button">Simpan</button>
+            <button type="button" className="cancel-button" onClick={onClose}>Batal</button>
+          </div>
+        </form>
+      </div>
     </div>
   );
-}
+};
 
 export default SiswaForm;

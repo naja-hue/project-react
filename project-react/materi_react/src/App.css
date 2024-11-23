@@ -1,184 +1,354 @@
-/* Styling untuk card */
-.card {
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 2px solid #f8bbd0; /* Border pink pastel */
-  margin-bottom: 20px; /* Menambahkan margin bawah antar card */
+@import '~font-awesome/css/font-awesome.min.css';
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #FAD0C4, #FFD1DC); /* Pink pastel gradient */
+  min-height: 100vh;
+  color: #333;
+  display: flex;
+  flex-direction: column;
 }
 
-.card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+/* Container utama untuk seluruh aplikasi */
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
-/* Menambahkan spasi antar elemen di dalam card */
-.card h2 {
-  font-size: 24px;
-  font-weight: 600;
-  color: #ec407a;
-  margin-bottom: 15px;
+.content-container {
+  margin-left: 270px; /* Membuat ruang untuk Sidebar */
+  padding: 40px 30px; /* Menambahkan padding lebih banyak untuk ruang yang lebih luas */
+  background-color: #fce4ec; /* Latar belakang pink pastel yang lembut */
+  border-radius: 15px; /* Sudut lebih melengkung */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); /* Bayangan halus untuk kedalaman */
+  transition: all 0.3s ease; /* Transisi halus untuk perubahan */
+  position: relative; /* Menjaga posisi relatif terhadap elemen sekitarnya */
+  z-index: 1; /* Menempatkan di atas elemen lain jika diperlukan */
 }
 
-.card p {
-  font-size: 18px;
-  color: #555;
+
+.content-container:hover {
+  transform: translateY(-10px); /* Efek terangkat saat hover */
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2); /* Bayangan lebih besar saat hover */
+}
+
+/* Styling untuk h1 di dalam .content-container */
+.content-container h1 {
+  color: #d81b60; /* Dark pink yang elegan */
+  font-family: 'Poppins', sans-serif; /* Font modern dan bersih */
+  font-size: 2.5rem; /* Ukuran font lebih besar */
+  font-weight: 600; /* Berat font lebih tebal untuk memberikan kesan kuat */
+  margin-bottom: 20px; /* Memberikan jarak antara judul dan konten */
+  text-align: center; /* Menyelaraskan judul di tengah */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Bayangan halus pada teks */
+}
+
+/* Styling untuk teks dalam content-container */
+.content-container p {
+  font-size: 1.1rem; /* Ukuran teks lebih besar untuk kenyamanan baca */
+  color: #333; /* Warna teks netral dan mudah dibaca */
+  line-height: 1.6; /* Jarak antar baris yang lebih longgar */
   margin-bottom: 20px;
 }
 
-/* Tombol di dalam card */
+
+
+/* Styling untuk .cards-container */
+.cards-container {
+  display: flex;
+  justify-content: space-around; /* Menyebar kartu secara merata */
+  gap: 20px; /* Memberikan jarak antar kartu */
+  margin-top: 30px; /* Memberikan ruang antara konten atas dan kartu */
+  flex-wrap: wrap; /* Agar kartu dapat berpindah ke baris berikutnya saat ukuran layar kecil */
+  padding: 20px; /* Menambahkan padding di dalam kontainer kartu */
+}
+
+/* Styling untuk setiap card di dalam .cards-container */
+.card {
+  background: #f8bbd0; /* Soft Pink background */
+  padding: 30px; /* Padding yang lebih banyak untuk memberikan ruang di dalam kartu */
+  border-radius: 15px; /* Sudut kartu yang lebih melengkung */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Bayangan halus untuk kesan kedalaman */
+  width: 250px; /* Lebar kartu yang konsisten */
+  text-align: center; /* Menyelaraskan teks ke tengah */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transisi halus untuk transformasi dan bayangan */
+}
+
+/* Efek Hover pada card */
+.card:hover {
+  transform: translateY(-10px); /* Kartu sedikit terangkat saat hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Bayangan lebih besar saat hover */
+}
+
+/* Styling untuk title di dalam card */
+ .card h2 {
+  color: #d81b60; /* Warna pink gelap untuk judul */
+  font-size: 1.8rem; /* Ukuran font judul */
+  font-weight: 600; /* Ketebalan font judul */
+  margin-bottom: 15px; /* Ruang antara judul dan konten dalam kartu */
+}
+
+/* Styling untuk isi card (deskripsi atau jumlah) */
+ .card p {
+  color: #333; /* Warna teks yang lebih netral untuk deskripsi */
+  font-size: 1rem; /* Ukuran font deskripsi */
+  margin-bottom: 20px; /* Jarak antara deskripsi dan tombol */
+}
+
+/* Styling untuk tombol dalam card */
 .card button {
-  padding: 12px 20px;
-  font-size: 16px;
-  background-color: #f06292; /* Warna tombol pink pastel */
+  background-color: #f06292; /* Pink yang lebih kuat untuk tombol */
   color: white;
+  padding: 10px 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 25px; /* Sudut tombol lebih bulat */
+  font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin: 8px 0; /* Memberikan margin vertikal antar tombol */
-  display: inline-block; /* Membuat tombol dalam baris yang sama */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Transisi halus pada tombol */
 }
 
 .card button:hover {
-  background-color: #ec407a; /* Tombol lebih gelap saat hover */
+  background-color: #ec407a; /* Warna lebih gelap saat hover */
+  transform: translateY(-3px); /* Sedikit terangkat saat hover */
 }
 
-/* Tombol Tambah di bawah Tabel */
-button.tambah {
-  padding: 12px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  background-color: #f06292; /* Tombol tambah warna pink pastel */
-  color: white;
-  border: none;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-  margin-top: 20px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
 
-button.tambah:hover {
-  background-color: #ec407a; /* Tombol tambah lebih gelap saat hover */
-}
-
-/* Tombol Aksi dalam Tabel */
-button.aksi {
-  padding: 8px 15px;
-  background-color: #f06292; /* Warna tombol pink pastel */
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-right: 8px;
-  margin-top: 5px;
-}
-
-button.aksi:hover {
-  background-color: #ec407a; /* Tombol lebih gelap saat hover */
-}
-
-button.aksi-edit {
-  background-color: #ec407a;
-}
-
-button.aksi-delete {
-  background-color: #d32f2f; /* Merah sedikit gelap untuk tombol hapus */
-}
-
-button.aksi-edit:hover {
-  background-color: #c2185b; /* Merah gelap saat hover */
-}
-
-button.aksi-delete:hover {
-  background-color: #9a0007; /* Merah lebih gelap saat hover */
-}
 
 /* Tabel Styling */
 table {
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  overflow: hidden;
+  border-collapse: collapse; /* Menghilangkan jarak antar border sel */
+  border-radius: 10px; /* Sudut melengkung untuk tabel */
+  overflow: hidden; /* Menghindari overflow pada sudut melengkung */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Bayangan halus untuk kedalaman */
 }
 
-/* Header tabel */
+th, td {
+  padding: 15px; /* Padding yang nyaman */
+  text-align: center; /* Teks rata tengah */
+  border: 1px solid #f1c4d2; /* Border lembut berwarna pink */
+}
+
 th {
-  background-color: #f8bbd0; /* Pink pastel */
-  color: #ec407a; /* Pink gelap */
-  font-size: 18px;
-  font-weight: 600;
-  padding: 12px;
-  text-align: left;
-  border-bottom: 2px solid #f06292; /* Garis bawah pink pastel */
+  background-color: #ffccf9; /* Latar belakang header yang lembut */
+  color: #d81b60; /* Warna teks header yang kontras */
+  font-weight: bold; /* Teks tebal untuk header */
+  font-size: 18px; /* Ukuran font header */
+  text-transform: uppercase; /* Huruf kapital */
 }
 
-/* Sel data */
 td {
-  background-color: #ffffff; /* Putih untuk sel data */
-  color: #555;
-  padding: 12px;
-  text-align: left;
-  border-bottom: 2px solid #f8bbd0; /* Garis bawah pink pastel */
-  transition: background-color 0.3s ease;
+  background-color: #ffe4f2; /* Latar belakang sel yang lembut */
+  color: #333; /* Warna teks netral untuk sel */
+  font-size: 16px; /* Ukuran font sel */
 }
 
-/* Hover efek untuk baris */
-tr:hover {
-  background-color: #fce4ec; /* Pink sangat lembut untuk hover */
+tr:nth-child(even) td {
+  background-color: #ffe4e1; /* Warna latar belakang untuk baris genap */
 }
 
-/* Styling untuk tombol aksi dalam tabel */
-button.aksi {
-  padding: 8px 15px;
-  background-color: #f06292; /* Tombol dengan pink pastel */
-  color: white;
-  font-size: 14px;
-  font-weight: 600;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-right: 8px;
-  margin-top: 5px;
+tr:hover td {
+  background-color: #f27e9c; /* Latar belakang saat hover */
+  color: #ffffff; /* Mengubah warna teks saat hover */
+  transition: background-color 0.3s ease; /* Efek transisi halus saat hover */
 }
 
-button.aksi:hover {
-  background-color: #ec407a; /* Tombol lebih gelap saat hover */
+
+/* Tombol Tambah */
+.tambah {
+  padding: 10px 18px; /* Ukuran padding sedikit lebih besar untuk kenyamanan */
+  font-size: 16px; /* Ukuran font yang sedikit lebih besar */
+  border: none; /* Menghilangkan border default */
+  border-radius: 12px; /* Sudut melengkung yang lebih baik */
+  background-color: #f6c5d0; /* Warna pink pastel yang lembut */
+  color: #4a2c34; /* Warna teks yang gelap untuk kontras */
+  cursor: pointer; /* Mengubah kursor saat hover */
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s; /* Transisi untuk efek hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Bayangan lembut di bawah tombol */
+  margin: 20px
 }
 
-/* Tombol Edit dan Delete dengan variasi warna */
-button.aksi-edit {
-  background-color: #ec407a; /* Pink pastel gelap untuk tombol Edit */
+/* Tombol Kembali ke Dashboard */
+.back-to-dashboard {
+  padding: 10px 18px; /* Ukuran padding sedikit lebih besar untuk kenyamanan */
+  font-size: 16px; /* Ukuran font yang sedikit lebih besar */
+  border: none; /* Menghilangkan border default */
+  border-radius: 12px; /* Sudut melengkung yang lebih baik */
+  background-color: #f5a8b0; /* Warna pink pastel yang lembut */
+  color: #4a2c34; /* Warna teks yang lebih gelap untuk kontras */
+  cursor: pointer; /* Mengubah kursor saat hover */
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s; /* Transisi untuk efek hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Bayangan lembut di bawah tombol */
+  float: right; /* Memindahkan tombol ke kanan */
+  margin: 20px;
 }
 
-button.aksi-delete {
-  background-color: #d32f2f; /* Merah lebih gelap untuk tombol Hapus */
+/* Efek Hover pada tombol Tambah */
+.tambah:hover {
+  background-color: #f2b2b7; /* Warna saat hover lebih cerah */
+  transform: scale(1.05); /* Efek pembesaran saat hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Bayangan lebih dalam saat hover */
 }
 
-button.aksi-edit:hover {
-  background-color: #c2185b; /* Merah gelap saat hover untuk tombol Edit */
+/* Efek Hover pada tombol Kembali */
+.back-to-dashboard:hover {
+  background-color: #f2929e; /* Warna saat hover */
+  transform: scale(1.05); /* Efek pembesaran saat hover */
 }
 
-button.aksi-delete:hover {
-  background-color: #9a0007; /* Merah lebih gelap saat hover untuk tombol Hapus */
+/* Efek saat tombol diklik */
+.back-to-dashboard:active, .tambah:active {
+  transform: scale(0.98); /* Sedikit mengecil saat diklik */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Mengurangi bayangan saat diklik */
 }
 
-/* Styling untuk tabel container */
-.table-container {
-  margin-top: 30px;
-  overflow-x: auto;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  background-color: #f8bbd0; /* Pink pastel sebagai latar belakang tabel */
-  padding: 20px;
+/* Tombol Edit */
+.aksi-edit {
+  background-color: #f6c5d0; /* Warna pink pastel yang lembut */
+  color: #4a2c34; /* Warna teks yang gelap untuk kontras */
+  padding: 8px 12px; /* Ukuran padding yang lebih kecil */
+  border-radius: 10px; /* Sudut melengkung */
+  font-weight: bold; /* Teks tebal */
+  font-size: 0.9rem; /* Ukuran font lebih kecil */
+  border: none; /* Menghilangkan border default */
+  cursor: pointer; /* Mengubah kursor saat hover */
+  transition: background-color 0.3s; /* Transisi untuk efek hover */
+  margin-right: 10px; /* Memberikan ruang antara tombol Edit dan Delete */
 }
+
+/* Efek Hover pada tombol Edit */
+.aksi-edit:hover {
+  background-color: #f2929e; /* Warna saat hover lebih cerah */
+}
+
+/* Tombol Delete */
+.aksi-delete {
+  background-color: #ff6a88; /* Warna merah pastel */
+  color: white; /* Warna teks putih untuk kontras */
+  padding: 8px 12px; /* Ukuran padding yang lebih kecil */
+  border-radius: 10px; /* Sudut melengkung */
+  font-weight: bold; /* Teks tebal */
+  font-size: 0.9rem; /* Ukuran font lebih kecil */
+  border: none; /* Menghilangkan border default */
+  cursor: pointer; /* Mengubah kursor saat hover */
+  transition: background-color 0.3s; /* Transisi untuk efek hover */
+}
+
+/* Efek Hover pada tombol Delete */
+.aksi-delete:hover {
+  background-color: #ff4f6d; /* Warna saat hover lebih cerah */
+}
+
+/* Efek saat tombol diklik */
+.aksi-edit:active,
+.aksi-delete:active {
+  transform: scale(0.98); /* Sedikit mengecil saat diklik */
+}
+
+/* Tambahan CSS untuk memberi ruang antar tombol */
+.aksi {
+  margin: 5px; /* Memberikan spasi antara tombol */
+}
+
+
+/* Styling untuk Form */ 
+.siswa-form { 
+  background-color: #fce4ec; /* Pink pastel */ 
+  padding: 30px; 
+  border-radius: 12px; 
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Shadow lembut */ 
+  width: 450px; 
+  margin: 30px auto; 
+  font-family: 'Roboto', sans-serif; 
+} 
+ 
+/* Judul Form */ 
+.siswa-form h2 { 
+  text-align: center; 
+  color: #d81b60; /* Warna pink gelap */ 
+  margin-bottom: 20px; 
+} 
+ 
+/* Styling untuk Label */ 
+.siswa-form label { 
+  display: block; 
+  margin: 12px 0 6px; 
+  font-size: 14px; 
+  font-weight: 600; 
+  color: #5e35b1; /* Warna ungu lembut */ 
+} 
+ 
+/* Styling untuk Input Field */ 
+.siswa-form input { 
+  width: 100%; 
+  padding: 12px; 
+  margin: 8px 0; 
+  border: 1px solid #e1bee7; /* Warna border abu-abu muda */ 
+  border-radius: 8px; 
+  background-color: #fff; 
+  font-size: 14px; 
+  color: #5e35b1; /* Warna ungu lembut */ 
+} 
+ 
+.siswa-form input:focus { 
+  outline: none; 
+  border-color: #f06292; /* Warna pink pastel pada border saat focus */ 
+  box-shadow: 0 0 5px rgba(240, 98, 146, 0.6); 
+} 
+ 
+/* Styling untuk Button */ 
+.siswa-form button { 
+  width: 48%; 
+  padding: 12px; 
+  border: none; 
+  border-radius: 8px; 
+  background-color: #f06292; /* Pink pastel */ 
+  color: white; 
+  font-size: 16px; 
+  font-weight: 600; 
+  cursor: pointer; 
+  transition: background-color 0.3s ease, transform 0.2s ease; 
+  margin-top: 20px; 
+  display: inline-block; 
+  text-align: center; 
+} 
+ 
+/* Tombol Simpan */ 
+.siswa-form button[type="submit"] { 
+  background-color: #f06292; /* Pink pastel */ 
+} 
+ 
+/* Tombol Batal */ 
+.siswa-form button[type="button"] { 
+  background-color: #eeeeee; /* Warna abu-abu muda untuk tombol batal */ 
+  color: #5e35b1; /* Warna ungu */ 
+} 
+ 
+/* Hover efek untuk tombol */ 
+.siswa-form button:hover { 
+  background-color: #ec407a; /* Warna pink lebih gelap saat hover */ 
+  transform: translateY(-2px); /* Efek angkat tombol */ 
+} 
+ 
+/* Hover efek untuk tombol batal */ 
+.siswa-form button[type="button"]:hover { 
+  background-color: #f0f0f0; 
+  transform: translateY(-2px); 
+} 
+ 
+/* Styling untuk error message */ 
+.error { 
+  color: #d32f2f; 
+  font-size: 12px; 
+  margin-top: 5px; 
+} 
+ 
+/* Responsive */ 
+@media (max-width: 480px) { 
+  .siswa-form { 
+    width: 100%; 
+    padding: 20px; 
+  } 
+}
+
