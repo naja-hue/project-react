@@ -18,7 +18,6 @@ function App() {
     fetchSiswaData();
   }, []);
 
-  // Fetch data functions
   const fetchGuruData = async () => {
     try {
       const response = await fetch('http://localhost:5000/guru');
@@ -39,7 +38,6 @@ function App() {
     }
   };
 
-  // Add functions
   const addGuru = async (guru) => {
     try {
       const response = await fetch('http://localhost:5000/guru', {
@@ -70,7 +68,6 @@ function App() {
     }
   };
 
-  // Update functions
   const updateGuru = async (updatedGuru) => {
     try {
       const response = await fetch(`http://localhost:5000/guru/${updatedGuru.id}`, {
@@ -107,7 +104,6 @@ function App() {
     }
   };
 
-  // Delete functions
   const deleteGuru = async (id) => {
     try {
       await fetch(`http://localhost:5000/guru/${id}`, { method: 'DELETE' });
@@ -126,7 +122,6 @@ function App() {
     }
   };
 
-  // Menu handling
   const handleMenuClick = (menu) => {
     setActiveMenu(menu);
   };
@@ -142,7 +137,7 @@ function App() {
       <div className="content-container">
         {activeMenu === "dashboard" && (
           <>
-            <h1 className="dashboard-title">Dashboard</h1>
+            <h1 className="dashboard-title">مرحباً بك في لوحة المعلومات</h1>
             <div className="cards-container">
               <div className="card">
                 <h2>Data Guru</h2>
@@ -161,7 +156,10 @@ function App() {
           <>
             <h1>Data Guru</h1>
             <button className="back-to-dashboard" onClick={goToDashboard}>Kembali ke Dashboard</button>
-            <button className="tambah" onClick={() => setShowGuruForm(true)}>Tambah Guru</button>
+            <button className="tambah" onClick={() => {
+              setEditingGuru(null); // Reset editingGuru
+              setShowGuruForm(true); // Tampilkan form tambah guru
+            }}>Tambah Guru</button>
             <div className="table-container">
               <table>
                 <thead>
@@ -186,8 +184,8 @@ function App() {
                         <button 
                           className="aksi aksi-edit"
                           onClick={() => {
-                            setEditingGuru(guru);
-                            setShowGuruForm(true);
+                            setEditingGuru(guru); // Set guru yang diedit
+                            setShowGuruForm(true); // Tampilkan form edit guru
                           }}
                         >
                           Edit
@@ -205,7 +203,10 @@ function App() {
           <>
             <h1>Data Siswa</h1>
             <button className="back-to-dashboard" onClick={goToDashboard}>Kembali ke Dashboard</button>
-            <button className="tambah" onClick={() => setShowSiswaForm(true)}>Tambah Siswa</button>
+            <button className="tambah" onClick={() => {
+              setEditingSiswa(null); // Reset editingSiswa
+              setShowSiswaForm(true); // Tampilkan form tambah siswa
+            }}>Tambah Siswa</button>
             <div className="table-container">
               <table>
                 <thead>
@@ -230,8 +231,8 @@ function App() {
                         <button 
                           className="aksi aksi-edit"
                           onClick={() => {
-                            setEditingSiswa(siswa);
-                            setShowSiswaForm(true);
+                            setEditingSiswa(siswa); // Set siswa yang diedit
+                            setShowSiswaForm(true); // Tampilkan form edit siswa
                           }}
                         >
                           Edit
@@ -245,21 +246,23 @@ function App() {
             </div>
           </>
         )}
-        {showGuruForm && (
-          <GuruForm 
-            onSubmit={editingGuru ? updateGuru : addGuru} 
-            onClose={() => setShowGuruForm(false)} 
-            initialData={editingGuru} 
-          />
-        )}
-        {showSiswaForm && (
-          <SiswaForm 
-            onSubmit={editingSiswa ? updateSiswa : addSiswa} 
-            onClose={() => setShowSiswaForm(false)} 
-            initialData={editingSiswa} 
-          />
-        )}
       </div>
+
+      {showGuruForm && (
+        <GuruForm 
+          onSubmit={editingGuru ? updateGuru : addGuru} 
+          onClose={() => setShowGuruForm(false)} 
+          initialData={editingGuru} 
+        />
+      )}
+
+      {showSiswaForm && (
+        <SiswaForm 
+          onSubmit={editingSiswa ? updateSiswa : addSiswa} 
+          onClose={() => setShowSiswaForm(false)} 
+          initialData={editingSiswa} 
+        />
+      )}
     </div>
   );
 }

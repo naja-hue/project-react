@@ -24,6 +24,17 @@
   font-weight: 700; /* Teks lebih tebal */
   margin: 10px 0; /* Margin di sekitar judul */
   color: #b84f71; /* Warna judul pink gelap (lebih pekat) */
+  display: flex; /* Menampilkan judul dan ikon dalam baris */
+  align-items: center; /* Meratakan ikon dan teks di tengah */
+  justify-content: center; /* Memastikan konten di tengah */
+}
+
+.sidebar-title img, /* Jika menggunakan gambar */
+.sidebar-title svg {
+  margin-right: 8px; /* Ruang antara ikon dan judul */
+  width: 28px; /* Ukuran ikon */
+  height: 28px; /* Tinggi ikon */
+  color: #b84f71; /* Warna ikon disamakan dengan judul */
 }
 
 .sidebar-menu {

@@ -15,6 +15,13 @@ const GuruForm = ({ onSubmit, onClose, initialData }) => {
       setNik(initialData.nik);
       setJk(initialData.jk);
       setJabatan(initialData.jabatan);
+    } else {
+      // Reset form jika tidak ada initialData
+      setNama('');
+      setMapel('');
+      setNik('');
+      setJk('');
+      setJabatan('');
     }
   }, [initialData]);
 
@@ -28,7 +35,7 @@ const GuruForm = ({ onSubmit, onClose, initialData }) => {
       jk,
       jabatan,
     };
-    onSubmit(updatedGuru);
+    onSubmit(updatedGuru); // Panggil fungsi onSubmit yang dikirim dari parent
   };
 
   return (

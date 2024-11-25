@@ -15,20 +15,27 @@ const SiswaForm = ({ onSubmit, onClose, initialData }) => {
       setJurusan(initialData.jurusan);
       setNisn(initialData.nisn);
       setAsalSekolah(initialData.asalSekolah);
+    } else {
+      // Reset form jika tidak ada initialData
+      setNama('');
+      setKelas('');
+      setJurusan('');
+      setNisn('');
+      setAsalSekolah('');
     }
   }, [initialData]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const updatedSiswa = {
-      id: initialData ? initialData.id : Date.now(),
+      id: initialData ? initialData.id : Date.now(), // Pastikan id unik
       nama,
       kelas,
       jurusan,
       nisn,
       asalSekolah,
     };
-    onSubmit(updatedSiswa);
+    onSubmit(updatedSiswa); // Panggil fungsi onSubmit yang dikirim dari parent
   };
 
   return (

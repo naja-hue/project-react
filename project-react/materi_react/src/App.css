@@ -27,7 +27,6 @@ body {
   z-index: 1; /* Menempatkan di atas elemen lain jika diperlukan */
 }
 
-
 .content-container:hover {
   transform: translateY(-10px); /* Efek terangkat saat hover */
   box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2); /* Bayangan lebih besar saat hover */
@@ -51,8 +50,6 @@ body {
   line-height: 1.6; /* Jarak antar baris yang lebih longgar */
   margin-bottom: 20px;
 }
-
-
 
 /* Styling untuk .cards-container */
 .cards-container {
@@ -112,8 +109,6 @@ body {
   background-color: #ec407a; /* Warna lebih gelap saat hover */
   transform: translateY(-3px); /* Sedikit terangkat saat hover */
 }
-
-
 
 /* Tabel Styling */
 table {
@@ -249,106 +244,5 @@ tr:hover td {
 /* Tambahan CSS untuk memberi ruang antar tombol */
 .aksi {
   margin: 5px; /* Memberikan spasi antara tombol */
-}
-
-
-/* Styling untuk Form */ 
-.siswa-form { 
-  background-color: #fce4ec; /* Pink pastel */ 
-  padding: 30px; 
-  border-radius: 12px; 
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Shadow lembut */ 
-  width: 450px; 
-  margin: 30px auto; 
-  font-family: 'Roboto', sans-serif; 
-} 
- 
-/* Judul Form */ 
-.siswa-form h2 { 
-  text-align: center; 
-  color: #d81b60; /* Warna pink gelap */ 
-  margin-bottom: 20px; 
-} 
- 
-/* Styling untuk Label */ 
-.siswa-form label { 
-  display: block; 
-  margin: 12px 0 6px; 
-  font-size: 14px; 
-  font-weight: 600; 
-  color: #5e35b1; /* Warna ungu lembut */ 
-} 
- 
-/* Styling untuk Input Field */ 
-.siswa-form input { 
-  width: 100%; 
-  padding: 12px; 
-  margin: 8px 0; 
-  border: 1px solid #e1bee7; /* Warna border abu-abu muda */ 
-  border-radius: 8px; 
-  background-color: #fff; 
-  font-size: 14px; 
-  color: #5e35b1; /* Warna ungu lembut */ 
-} 
- 
-.siswa-form input:focus { 
-  outline: none; 
-  border-color: #f06292; /* Warna pink pastel pada border saat focus */ 
-  box-shadow: 0 0 5px rgba(240, 98, 146, 0.6); 
-} 
- 
-/* Styling untuk Button */ 
-.siswa-form button { 
-  width: 48%; 
-  padding: 12px; 
-  border: none; 
-  border-radius: 8px; 
-  background-color: #f06292; /* Pink pastel */ 
-  color: white; 
-  font-size: 16px; 
-  font-weight: 600; 
-  cursor: pointer; 
-  transition: background-color 0.3s ease, transform 0.2s ease; 
-  margin-top: 20px; 
-  display: inline-block; 
-  text-align: center; 
-} 
- 
-/* Tombol Simpan */ 
-.siswa-form button[type="submit"] { 
-  background-color: #f06292; /* Pink pastel */ 
-} 
- 
-/* Tombol Batal */ 
-.siswa-form button[type="button"] { 
-  background-color: #eeeeee; /* Warna abu-abu muda untuk tombol batal */ 
-  color: #5e35b1; /* Warna ungu */ 
-} 
- 
-/* Hover efek untuk tombol */ 
-.siswa-form button:hover { 
-  background-color: #ec407a; /* Warna pink lebih gelap saat hover */ 
-  transform: translateY(-2px); /* Efek angkat tombol */ 
-} 
- 
-/* Hover efek untuk tombol batal */ 
-.siswa-form button[type="button"]:hover { 
-  background-color: #f0f0f0; 
-  transform: translateY(-2px); 
-} 
- 
-/* Styling untuk error message */ 
-.error { 
-  color: #d32f2f; 
-  font-size: 12px; 
-  margin-top: 5px; 
-} 
- 
-/* Responsive */ 
-@media (max-width: 480px) { 
-  .siswa-form { 
-    width: 100%; 
-    padding: 20px; 
-  } 
 }
 

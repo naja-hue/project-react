@@ -4,18 +4,17 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.6); 
+    background-color: rgba(0, 0, 0, 0.5); /* Sedikit lebih transparan untuk efek lebih lembut */
     z-index: 999; 
 }
 
-
 .form-container {
-    background: linear-gradient(135deg, #ffffff, #f8bbd0); 
-    padding: 15px; 
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); 
+    background: linear-gradient(135deg, #ffffff, #f8bbd0); /* Latar belakang gradient lembut */
+    padding: 25px; /* Padding yang lebih besar untuk kenyamanan */
+    border-radius: 15px; 
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2); /* Bayangan lebih besar untuk efek mengambang */
     width: 400px;
-    max-height: 400px; 
+    max-height: 500px; /* Tinggi maksimum yang lebih besar */
     overflow-y: auto; 
     position: absolute;
     top: 50%;
@@ -24,7 +23,6 @@
     z-index: 1000; 
     animation: fadeIn 0.5s ease;  
 }
-
 
 @keyframes fadeIn {
     from {
@@ -37,19 +35,18 @@
     }
 }
 
-
 .form-container h2 {
     text-align: center;
-    color: #d81b60; 
-    margin-bottom: 15px; 
-    font-size: 1.5em; 
+    color: #d81b60; /* Warna pink gelap untuk judul */
+    margin-bottom: 20px; 
+    font-size: 1.8em; 
     font-weight: bold; 
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan teks untuk efek kedalaman */
 }
-
 
 .form-container label {
     display: block;
-    margin: 5px 0; 
+    margin: 10px 0; /* Ruang yang lebih baik untuk label */
     font-size: 14px;
     font-weight: 600;
     color: #5e35b1; 
@@ -58,54 +55,54 @@
 .form-container input,
 .form-container select {
     width: 100%;
-    padding: 8px; 
-    margin: 5px 0; 
-    border: 1px solid #e1bee7; 
+    padding: 12px; /* Meningkatkan padding untuk kenyamanan */
+    margin: 8px 0; 
+    border: 1px solid #f8bbd0; /* Warna border pink soft */
     border-radius: 8px; 
-    background-color: #ffffff; 
+    background-color: #ffffff; /* Latar belakang putih untuk input */
     font-size: 14px;
     color: #333; 
     transition: border-color 0.3s ease, box-shadow 0.3s ease; 
 }
 
-
 .form-container input:focus,
 .form-container select:focus {
     outline: none;
     border-color: #f06292; 
-    box-shadow: 0 0 5px rgba(240, 98, 146, 0.6); 
+    box-shadow: 0 0 8px rgba(240, 98, 146, 0.5); /* Bayangan lebih lembut saat fokus */
 }
 
-
 .form-container .button {
-    background-color: #d81b60; 
+    background-color: #f06292; /* Warna pink pastel untuk tombol simpan */
     color: white;
-    padding: 8px; 
+    padding: 12px; /* Padding yang baik */
     border: none;
     border-radius: 8px; 
     cursor: pointer;
     width: 100%;
-    font-size: 14px; 
-    margin-top: 10px; 
+    font-size: 16px; 
+    margin-top: 15px; 
     transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Bayangan lebih halus */
 }
 
 .form-container .button:hover {
-    background-color: #c2185b; 
-    transform: translateY(-2px); 
+    background-color: #ec407a; /* Warna pink lebih gelap saat hover */
+    transform: translateY(-3px); /* Efek angkat yang lembut */
 }
 
-
 .form-container .cancel-button {
-    background-color: #e0e0e0; 
-    color: #000;
-    margin-top: 5px; 
+    background-color: #e0e0e0; /* Warna abu-abu lembut untuk tombol batal */
+    color: #333; 
+    margin-top: 10px; 
     border-radius: 8px; 
     width: 100%; 
     cursor: pointer;
     transition: background-color 0.3s ease; 
+    padding: 12px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Bayangan lembut pada tombol batal */
 }
 
 .form-container .cancel-button:hover {
-    background-color: #d5d5d5; 
+    background-color: #d5d5d5; /* Warna lebih gelap saat hover */
 }
