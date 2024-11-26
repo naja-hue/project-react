@@ -1,17 +1,22 @@
 /* Sidebar.css */
 .sidebar {
-  width: 260px; /* Lebar sidebar yang lebih kecil */
-  height: 100vh; /* Full height */
-  background: linear-gradient(135deg, #f7c6d7, #f9e1e7); /* Pink pastel lembut */
-  color: #6e4b8e; /* Warna teks pink gelap */
-  padding-top: 40px; /* Ruang untuk header */
-  position: fixed; /* Posisi tetap di kiri */
-  top: 0;
-  left: 0;
-  box-shadow: 4px 0 25px rgba(0, 0, 0, 0.1); /* Bayangan halus */
-  transition: 0.3s ease-in-out; /* Transisi yang halus */
-  font-family: 'Poppins', sans-serif; /* Gaya font */
-  z-index: 1000; /* Di atas konten lainnya */
+  width: 250px; /* Lebar sidebar */
+  height: 100vh; /* Tinggi sidebar mengikuti tinggi viewport */
+  background: linear-gradient(135deg, #f7c6d7, #f9e1e7); /* Warna pink pastel lembut */
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1); /* Bayangan sidebar */
+  position: fixed; /* Posisi sidebar tetap */
+  z-index: 1000; /* Pastikan sidebar di atas konten lainnya */
+  padding: 30px 20px; /* Ruang di dalam sidebar */
+  display: flex; /* Menggunakan flexbox untuk konten sidebar */
+  flex-direction: column; /* Mengatur konten vertikal */
+  top: 0; /* Mulai dari atas */
+  transform: translateX(-100%); /* Sidebar tertutup dengan menggeser ke kiri */
+  transition: transform 0.3s ease-in-out; /* Transisi ketika sidebar dibuka atau ditutup */
+}
+
+/* Sidebar terbuka */
+.sidebar.open {
+  transform: translateX(0); /* Ketika terbuka, sidebar bergeser ke posisi normal */
 }
 
 .sidebar-header {
@@ -74,3 +79,44 @@
     width: 220px; /* Lebih sempit di perangkat kecil */
   }
 }
+
+/* Tombol untuk membuka sidebar */
+.sidebar-toggle-btn {
+  position: fixed; /* Tombol tetap di layar */
+  top: 20px; /* Letakkan tombol sedikit dari atas layar */
+  left: 20px; /* Letakkan tombol sedikit dari kiri layar */
+  background-color: #f7c6d7; /* Warna pink pastel lembut */
+  color: #ffffff; /* Warna teks putih */
+  padding: 12px 24px; /* Padding tombol */
+  border: none; /* Menghilangkan border */
+  border-radius: 50px; /* Membuat tombol lebih bulat */
+  font-size: 18px; /* Ukuran font tombol */
+  cursor: pointer; /* Ubah kursor menjadi pointer */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Bayangan lembut */
+  z-index: 1050; /* Pastikan tombol berada di atas sidebar */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Transisi lembut saat hover */
+}
+
+/* Tombol hover */
+.sidebar-toggle-btn:hover {
+  background-color: #ff9bb4; /* Ubah warna saat hover */
+  transform: scale(1.05); /* Efek membesar saat hover */
+}
+
+/* Tombol Fokus */
+.sidebar-toggle-btn:focus {
+  outline: none; /* Menghilangkan outline default */
+  box-shadow: 0 0 0 4px rgba(247, 198, 215, 0.5); /* Bayangan saat fokus */
+}
+
+/* Untuk Sidebar yang Terbuka */
+.sidebar.open {
+  transform: translateX(0); /* Sidebar bergeser ke posisi normal saat terbuka */
+  z-index: 1000; /* Pastikan sidebar berada di atas konten lainnya */
+}
+
+/* Menambahkan margin di sebelah kiri sidebar agar tombol tidak tertutup */
+.sidebar.open ~ .sidebar-toggle-btn {
+  left: 270px; /* Menggeser tombol ke kiri sedikit agar tidak tertutup oleh sidebar */
+}
+

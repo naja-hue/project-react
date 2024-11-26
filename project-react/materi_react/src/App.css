@@ -9,67 +9,42 @@ body {
   flex-direction: column;
 }
 
-/* Container utama untuk seluruh aplikasi */
-.App {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+
+
+.dashboard-title {
+  text-align: center;
+  color: #d81b60; /* Warna tetap sama */
+  margin-top: 70px;
+  font-size: 2.3rem; 
+  font-weight: 600;
+  padding: 10px 0; /* Menambahkan padding atas dan bawah */
+  position: relative; /* Untuk mengatur posisi border */
+  transition: all 0.3s ease; /* Menambahkan transisi untuk efek hover */
 }
 
-.content-container {
-  margin-left: 270px; /* Membuat ruang untuk Sidebar */
-  padding: 40px 30px; /* Menambahkan padding lebih banyak untuk ruang yang lebih luas */
-  background-color: #fce4ec; /* Latar belakang pink pastel yang lembut */
-  border-radius: 15px; /* Sudut lebih melengkung */
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); /* Bayangan halus untuk kedalaman */
-  transition: all 0.3s ease; /* Transisi halus untuk perubahan */
-  position: relative; /* Menjaga posisi relatif terhadap elemen sekitarnya */
-  z-index: 1; /* Menempatkan di atas elemen lain jika diperlukan */
-}
-
-.content-container:hover {
-  transform: translateY(-10px); /* Efek terangkat saat hover */
-  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2); /* Bayangan lebih besar saat hover */
-}
-
-/* Styling untuk h1 di dalam .content-container */
-.content-container h1 {
-  color: #d81b60; /* Dark pink yang elegan */
-  font-family: 'Poppins', sans-serif; /* Font modern dan bersih */
-  font-size: 2.5rem; /* Ukuran font lebih besar */
-  font-weight: 600; /* Berat font lebih tebal untuk memberikan kesan kuat */
-  margin-bottom: 20px; /* Memberikan jarak antara judul dan konten */
-  text-align: center; /* Menyelaraskan judul di tengah */
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Bayangan halus pada teks */
-}
-
-/* Styling untuk teks dalam content-container */
-.content-container p {
-  font-size: 1.1rem; /* Ukuran teks lebih besar untuk kenyamanan baca */
-  color: #333; /* Warna teks netral dan mudah dibaca */
-  line-height: 1.6; /* Jarak antar baris yang lebih longgar */
-  margin-bottom: 20px;
+/* Menambahkan efek hover */
+.dashboard-title:hover {
+  color: #f48fb1; /* Warna sedikit lebih terang saat hover */
 }
 
 /* Styling untuk .cards-container */
 .cards-container {
   display: flex;
-  justify-content: space-around; /* Menyebar kartu secara merata */
-  gap: 20px; /* Memberikan jarak antar kartu */
-  margin-top: 30px; /* Memberikan ruang antara konten atas dan kartu */
+  justify-content: center; /* Pusatkan kartu dalam wadah */
+  margin-top: 40px; /* Mengurangi ruang antara konten atas dan kartu */
   flex-wrap: wrap; /* Agar kartu dapat berpindah ke baris berikutnya saat ukuran layar kecil */
-  padding: 20px; /* Menambahkan padding di dalam kontainer kartu */
 }
 
 /* Styling untuk setiap card di dalam .cards-container */
 .card {
   background: #f8bbd0; /* Soft Pink background */
-  padding: 30px; /* Padding yang lebih banyak untuk memberikan ruang di dalam kartu */
+  padding: 20px; /* Mengurangi padding untuk memperkecil ukuran kartu */
   border-radius: 15px; /* Sudut kartu yang lebih melengkung */
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Bayangan halus untuk kesan kedalaman */
-  width: 250px; /* Lebar kartu yang konsisten */
+  width: 220px; /* Mengurangi lebar kartu untuk memberi lebih banyak ruang horizontal */
   text-align: center; /* Menyelaraskan teks ke tengah */
   transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transisi halus untuk transformasi dan bayangan */
+  margin: 10px; /* Menggunakan margin yang lebih kecil untuk memperdekat kartu */
 }
 
 /* Efek Hover pada card */
@@ -109,47 +84,58 @@ body {
   background-color: #ec407a; /* Warna lebih gelap saat hover */
   transform: translateY(-3px); /* Sedikit terangkat saat hover */
 }
+  
+.data-guru-title {
+  text-align: center; /* Menyelaraskan teks ke tengah */
+  color: #d81b60; /* Warna teks */
+  margin-top: 50px; /* Ruang di atas */
+  font-size: 2rem; /* Ukuran font */
+  font-weight: bold; /* Ketebalan font */
+  text-transform: uppercase; /* Mengubah teks menjadi huruf kapital */
+}
 
-/* Tabel Styling */
+.data-siswa-title {
+  text-align: center; /* Menyelaraskan teks ke tengah */
+  color: #d81b60; /* Warna teks */
+  margin-top: 50px; /* Ruang di atas */
+  font-size: 2rem; /* Ukuran font */
+  font-weight: bold; /* Ketebalan font */
+  text-transform: uppercase; /* Mengubah teks menjadi huruf kapital */
+}
+
+.app-content {
+  margin-left: 260px; /* Sesuaikan dengan lebar sidebar */
+  padding: 20px; /* Ruang di sekitar konten */
+}
+
+.table-container {
+  padding: 20px; /* Ruang di sekitar kontainer tabel */
+}
+
 table {
-  width: 100%;
-  border-collapse: collapse; /* Menghilangkan jarak antar border sel */
-  border-radius: 10px; /* Sudut melengkung untuk tabel */
-  overflow: hidden; /* Menghindari overflow pada sudut melengkung */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Bayangan halus untuk kedalaman */
+  width: 100%; /* Tabel akan memenuhi lebar konten */
+  border-collapse: collapse;
 }
 
 th, td {
-  padding: 15px; /* Padding yang nyaman */
-  text-align: center; /* Teks rata tengah */
-  border: 1px solid #f1c4d2; /* Border lembut berwarna pink */
+  padding: 15px; 
+  text-align: center; 
+  border: 1px solid #f1c4d2; 
 }
 
 th {
-  background-color: #ffccf9; /* Latar belakang header yang lembut */
-  color: #d81b60; /* Warna teks header yang kontras */
-  font-weight: bold; /* Teks tebal untuk header */
-  font-size: 18px; /* Ukuran font header */
-  text-transform: uppercase; /* Huruf kapital */
+  background-color: #ffccf9; 
+  color: #d81b60; 
+  font-weight: bold; 
+  font-size: 18px; 
+  text-transform: uppercase; 
 }
 
 td {
-  background-color: #ffe4f2; /* Latar belakang sel yang lembut */
-  color: #333; /* Warna teks netral untuk sel */
-  font-size: 16px; /* Ukuran font sel */
+  background-color: #ffe4f2; 
+  color: #333; 
+  font-size: 16px; 
 }
-
-tr:nth-child(even) td {
-  background-color: #ffe4e1; /* Warna latar belakang untuk baris genap */
-}
-
-tr:hover td {
-  background-color: #f27e9c; /* Latar belakang saat hover */
-  color: #ffffff; /* Mengubah warna teks saat hover */
-  transition: background-color 0.3s ease; /* Efek transisi halus saat hover */
-}
-
-
 /* Tombol Tambah */
 .tambah {
   padding: 10px 18px; /* Ukuran padding sedikit lebih besar untuk kenyamanan */
@@ -161,7 +147,7 @@ tr:hover td {
   cursor: pointer; /* Mengubah kursor saat hover */
   transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s; /* Transisi untuk efek hover */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Bayangan lembut di bawah tombol */
-  margin: 20px
+  margin: 5px
 }
 
 /* Tombol Kembali ke Dashboard */
@@ -176,7 +162,7 @@ tr:hover td {
   transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s; /* Transisi untuk efek hover */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Bayangan lembut di bawah tombol */
   float: right; /* Memindahkan tombol ke kanan */
-  margin: 20px;
+  margin: 5px;
 }
 
 /* Efek Hover pada tombol Tambah */
@@ -246,3 +232,21 @@ tr:hover td {
   margin: 5px; /* Memberikan spasi antara tombol */
 }
 
+.error-message {
+  color: red; /* Warna pesan error */
+}
+
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem; /* Adjust heading size for small screens */
+  }
+
+  table {
+    font-size: 0.9rem; /* Adjust font size for tables */
+  }
+
+  th, td {
+    padding: 5px; /* Reduce padding for small screens */
+  }
+}

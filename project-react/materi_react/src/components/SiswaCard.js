@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 function SiswaCard({ siswa, onEdit, onDelete }) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedSiswa, setEditedSiswa] = useState(siswa);

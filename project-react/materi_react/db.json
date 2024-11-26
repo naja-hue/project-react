@@ -2,6 +2,7 @@
   "guru": [
     {
       "id": "3",
+      "no": 1,
       "nama": "Jokko",
       "mapel": "Matematika",
       "nik": "12345",
@@ -10,6 +11,7 @@
     },
     {
       "id": "1",
+      "no": 2,
       "nama": "Abi",
       "mapel": "Kimia",
       "nik": "12345",
@@ -20,6 +22,7 @@
   "siswa": [
     {
       "id": "1",
+      "no": 1,
       "nama": "Mamat",
       "kelas": "12",
       "jurusan": "IPA",
@@ -28,7 +31,8 @@
     },
     {
       "id": "2",
-      "nama": "Siti",
+      "no": 2,
+      "nama": "SITIA",
       "kelas": "12",
       "jurusan": "IPS",
       "nisn": "002",

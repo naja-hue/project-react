@@ -3,6 +3,9 @@ import './App.css';
 import GuruForm from './components/GuruForm';
 import SiswaForm from './components/SiswaForm';
 import Sidebar from './components/Sidebar';
+import GuruTable from './components/GuruTable';
+import SiswaTable from './components/SiswaTable';
+import Dashboard from './components/Dashboard'; // Impor komponen Dashboard
 
 function App() {
   const [guruData, setGuruData] = useState([]);
@@ -12,6 +15,7 @@ function App() {
   const [activeMenu, setActiveMenu] = useState("dashboard");
   const [editingGuru, setEditingGuru] = useState(null);
   const [editingSiswa, setEditingSiswa] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetchGuruData();
@@ -21,20 +25,22 @@ function App() {
   const fetchGuruData = async () => {
     try {
       const response = await fetch('http://localhost:5000/guru');
+      if (!response.ok) throw new Error('Failed to fetch guru data');
       const data = await response.json();
       setGuruData(data);
     } catch (error) {
-      console.error("Error fetching guru data:", error);
+      setError("Error fetching guru data: " + error.message);
     }
   };
 
   const fetchSiswaData = async () => {
     try {
       const response = await fetch('http://localhost:5000/siswa');
+      if (!response.ok) throw new Error('Failed to fetch siswa data');
       const data = await response.json();
       setSiswaData(data);
     } catch (error) {
-      console.error("Error fetching siswa data:", error);
+      setError("Error fetching siswa data: " + error.message);
     }
   };
 
@@ -133,120 +139,46 @@ function App() {
   return (
     <div className="App">
       <Sidebar handleMenuClick={handleMenuClick} />
+      <div className="main-content"> 
+      {error && <p className="error-message">{error}</p>}
 
-      <div className="content-container">
-        {activeMenu === "dashboard" && (
-          <>
-            <h1 className="dashboard-title">مرحباً بك في لوحة المعلومات</h1>
-            <div className="cards-container">
-              <div className="card">
-                <h2>Data Guru</h2>
-                <p>{guruData.length} Guru Terdaftar</p>
-                <button onClick={() => setActiveMenu("guru")}>Lihat Data Guru</button>
-              </div>
-              <div className="card">
-                <h2>Data Siswa</h2>
-                <p>{siswaData.length} Siswa Terdaftar</p>
-                <button onClick={() => setActiveMenu("siswa")}>Lihat Data Siswa</button>
-              </div>
-            </div>
-          </>
-        )}
-        {activeMenu === "guru" && (
-          <>
-            <h1>Data Guru</h1>
-            <button className="back-to-dashboard" onClick={goToDashboard}>Kembali ke Dashboard</button>
-            <button className="tambah" onClick={() => {
-              setEditingGuru(null); // Reset editingGuru
-              setShowGuruForm(true); // Tampilkan form tambah guru
-            }}>Tambah Guru</button>
-            <div className="table-container">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Nama</th>
-                    <th>Mapel</th>
-                    <th>NIK</th>
-                    <th>Jenis Kelamin</th>
-                    <th>Jabatan</th>
-                    <th>Aksi</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {guruData.map((guru) => (
-                    <tr key={guru.id}>
-                      <td>{guru.nama}</td>
-                      <td>{guru.mapel}</td>
-                      <td>{guru.nik}</td>
-                      <td>{guru.jk}</td>
-                      <td>{guru.jabatan}</td>
-                      <td>
-                        <button 
-                          className="aksi aksi-edit"
-                          onClick={() => {
-                            setEditingGuru(guru); // Set guru yang diedit
-                            setShowGuruForm(true); // Tampilkan form edit guru
-                          }}
-                        >
-                          Edit
-                        </button>
-                        <button className="aksi aksi-delete" onClick={() => deleteGuru(guru.id)}>Hapus</button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </>
-        )}
-        {activeMenu === "siswa" && (
-          <>
-            <h1>Data Siswa</h1>
-            <button className="back-to-dashboard" onClick={goToDashboard}>Kembali ke Dashboard</button>
-            <button className="tambah" onClick={() => {
-              setEditingSiswa(null); // Reset editingSiswa
-              setShowSiswaForm(true); // Tampilkan form tambah siswa
-            }}>Tambah Siswa</button>
-            <div className="table-container">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Nama</th>
-                    <th>Kelas</th>
-                    <th>Jurusan</th>
-                    <th>NISN</th>
-                    <th>Asal Sekolah</th>
-                    <th>Aksi</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {siswaData.map((siswa) => (
-                    <tr key={siswa.id}>
-                      <td>{siswa.nama}</td>
-                      <td>{siswa.kelas}</td>
-                      <td>{siswa.jurusan}</td>
-                      <td>{siswa.nisn}</td>
-                      <td>{siswa.asalSekolah}</td>
-                      <td>
-                        <button 
-                          className="aksi aksi-edit"
-                          onClick={() => {
-                            setEditingSiswa(siswa); // Set siswa yang diedit
-                            setShowSiswaForm(true); // Tampilkan form edit siswa
-                          }}
-                        >
-                          Edit
-                        </button>
-                        <button className="aksi aksi-delete" onClick={() => deleteSiswa(siswa.id)}>Hapus</button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </>
-        )}
-      </div>
+      {activeMenu === "dashboard" && (
+        <Dashboard guruData={guruData} siswaData={siswaData} setActiveMenu={setActiveMenu} />
+      )}
+
+      {activeMenu === "guru" && (
+        <>
+          <h1 className="data-guru-title">Data Guru</h1>
+          <button className="back-to-dashboard" onClick={goToDashboard}>Kembali ke Dashboard</button>
+          <button className="tambah" onClick={() => {
+            setEditingGuru(null); // Reset editingGuru
+            setShowGuruForm(true); // Tampilkan form tambah guru
+          }}>Tambah Guru</button>
+          <GuruTable 
+            guruData={guruData} 
+            setEditingGuru={setEditingGuru} 
+            setShowGuruForm={setShowGuruForm} 
+            deleteGuru={deleteGuru} 
+          />
+        </>
+      )}
+      
+      {activeMenu === "siswa" && (
+        <>
+          <h1 className="data-siswa-title">Data Siswa</h1>
+          <button className="back-to-dashboard" onClick={goToDashboard}>Kembali ke Dashboard</button>
+          <button className="tambah" onClick={() => {
+            setEditingSiswa(null); // Reset editingSiswa
+            setShowSiswaForm(true); // Tampilkan form tambah siswa
+          }}>Tambah Siswa</button>
+          <SiswaTable 
+            siswaData={siswaData} 
+            setEditingSiswa={setEditingSiswa} 
+            setShowSiswaForm={setShowSiswaForm} 
+            deleteSiswa={deleteSiswa} 
+          />
+        </>
+      )}
 
       {showGuruForm && (
         <GuruForm 
@@ -263,6 +195,7 @@ function App() {
           initialData={editingSiswa} 
         />
       )}
+    </div>
     </div>
   );
 }
